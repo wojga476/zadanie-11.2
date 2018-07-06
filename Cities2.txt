@@ -1,5 +1,0 @@
-WeatherTemp{city='Wrocław', description='Pogodnie', temp=20}
-WeatherTemp{city='Warszawa', description='Zachmurzenie z rozpogodzeniami', temp=15}
-WeatherTemp{city='Rzeszów', description='Pogodnie', temp=17}
-WeatherTemp{city='Gdańsk', description='Niewielkie zachmurzenie', temp=17}
-WeatherTemp{city='Katowice', description='Pogodnie', temp=17}

@@ -5,8 +5,11 @@ public class WeatherApp {
         String city = "wrocław";
         try {
             WeatherApi api = new WeatherApi();
+            OdczytZapis odczytZapis =new OdczytZapis();
             int temperature = api.getTemperature(city);
             String description = api.getDescription(city);
+            odczytZapis.odczyt();
+            odczytZapis.zapis();
             System.out.printf("Pogoda w mieście %s: %s\n", city, description);
             System.out.printf("Aktualna temperatura: %d stopni\n", temperature);
         } catch (IOException e) {

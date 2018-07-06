@@ -5,27 +5,39 @@ import java.util.Scanner;
 
 public class OdczytZapis {
 
-    public static void main(String[] args) throws IOException {
-        WeatherApi weatherApi = new WeatherApi();
-        List<String> lista = new ArrayList<>();
-        File file = new File("cities.txt");
-        Scanner sc = new Scanner(file);
-        while (sc.hasNextLine()) {
-            lista.add(sc.nextLine());
-        }
-        sc.close();
+        public void odczyt() {
+            List<String> lista = new ArrayList<>();
+            File file = new File("Cities.txt");
 
-        List<WeatherTemp> listaWeather = new ArrayList<>();
-        for (int i = 0; i < lista.size(); i++) {
-            listaWeather.add(new WeatherTemp(lista.get(i),weatherApi.getDescription(lista.get(i)),weatherApi.getTemperature(lista.get(i))));
+            try {
+                Scanner sc = new Scanner(file);
+                while (sc.hasNextLine()) {
+                    lista.add(sc.nextLine());
+                }
+                sc.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
         }
-        System.out.println(listaWeather.toString());
-        FileWriter fileWriter = new FileWriter("Cities2.txt");
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        for (int i = 0; i < listaWeather.size(); i++) {
-            bufferedWriter.write("" + listaWeather.get(i));
-            bufferedWriter.newLine();
+
+        public void zapis(){
+            try {
+                List<WeatherTemp> listaWeather = new ArrayList<>();
+                FileWriter fileWriter = new FileWriter("Cities2.txt");
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                WeatherApi weatherApi =new WeatherApi();
+                for (int i = 0; i < listaWeather.size(); i++) {
+                    bufferedWriter.write("" + listaWeather.get(i));
+                    bufferedWriter.newLine();
+//                    listaWeather.add(new WeatherTemp(listaWeather.get(i),weatherApi.getDescription(listaWeather.get(i),weatherApi.getTemperature(listaWeather.get(i)));
+                }
+                System.out.println(listaWeather.toString());
+                bufferedWriter.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
-        bufferedWriter.close();
-    }
 }
